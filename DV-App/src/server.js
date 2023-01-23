@@ -28,13 +28,9 @@ fastify.register(import("@fastify/static"), {
 // fastify-formbody lets us parse incoming forms
 fastify.register(import("@fastify/formbody"));
 
-// View is a templating manager for fastify
-fastify.register(import("@fastify/view"), {
-  engine: {
-    handlebars: handlebars
-  }
-});
-
+/*
+ * Simple API to allow the application to receive the configuration information needed for the widget
+ */
 fastify.get("/runtimeDetails", (req, reply) => {
   reply.send({"envId": process.env.ENVID, "dvPolicyId": process.env.DVPOLICYID, dvDomain: process.env.DVDOMAIN})
 })
@@ -43,7 +39,7 @@ fastify.get("/runtimeDetails", (req, reply) => {
 * DaVinci components
 ************************/
 
-// Retrieve the token needed to invoke a Widget flow
+// Retrieve the token needed to invoke a Widget flow in the client
 fastify.get("/getDvToken", (req, reply) => {
   getDVToken(dvToken => {
     reply.send({
@@ -55,7 +51,7 @@ fastify.get("/getDvToken", (req, reply) => {
 // Get a Widget sdkToken
 function getDVToken(cb) {
   
-  //https://orchestrate-api.pingone.com/v1/company/<Company ID>/sdktoken
+  // https://orchestrate-api.pingone.com/v1/company/<Company ID>/sdktoken
   const url = "https://orchestrate-api.pingone."+process.env.DVDOMAIN+"/v1/company/"+process.env.ENVID+"/sdktoken";
   console.log("Token Url: ", url)
   fetch(url, {
@@ -67,25 +63,6 @@ function getDVToken(cb) {
     .then(res => res.json())
     .then(data => cb(data))
     .catch(err => console.log("Error: ", err));
-}
-
-function invokeApiFlow(policyId, params, cb){
-  
-  console.log("Flow Params: ", params)
-  
-  const dvUrl = process.env.DVBASEURL+"/company/"+process.env.ENVID+"/policy/"+process.env.DVPOLICYID+"/start"
-  
-  fetch(dvUrl, {
-    headers: {
-      "X-SK-API-Key": process.env.DVAPIKEY,
-      "Content-Type": "application/json"
-    },
-    method: "post",
-    body: JSON.stringify(params)
-  })
-  .then(res => res.json())
-  .then(data => cb(data.additionalProperties))
-  .catch(err => console.log("API Error: ", err))
 }
 
 /************************

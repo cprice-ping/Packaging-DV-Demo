@@ -60,8 +60,8 @@ resource "kubernetes_deployment" "demo_app" {
       }
       spec {
         container {
-          image = "${var.app_image_name}"
-          name  = "${var.k8s_deploy_name}-app"
+          image             = var.app_image_name
+          name              = "${var.k8s_deploy_name}-app"
           image_pull_policy = "Always"
 
           env {

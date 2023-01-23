@@ -12,7 +12,6 @@
       "handlebars": "^4.7.7",
       "@fastify/formbody": "^7.4.0",
       "@fastify/static": "^6.6.1",
-      "@fastify/view": "^7.4.0",
       "btoa": "^1.2.1",
       "node-fetch": "^3.3.0"
     },

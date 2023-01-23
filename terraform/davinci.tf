@@ -21,7 +21,7 @@ resource "davinci_flow" "initial_flow" {
   environment_id = module.environment.identity_data_admin_role[0].scope_environment_id
 
   connections {
-    connection_id = "867ed4363b2bc21c860085ad2baa817d"
+    connection_id   = "867ed4363b2bc21c860085ad2baa817d"
     connection_name = "Http"
   }
 

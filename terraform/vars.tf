@@ -9,7 +9,7 @@ variable "organization_id" {
 }
 
 variable "license_name" {
-  type = string
+  type        = string
   description = "Name of the P1 license you want to assign to the Environment"
 }
 
@@ -21,31 +21,31 @@ variable "admin_env_id" {
 variable "admin_user_id" {
   type        = string
   description = "P1 Administrator to assign Roles to"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "admin_user_name" {
   type        = string
   description = "P1 Administrator username to connect to DaVinci with"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "admin_user_password" {
   type        = string
   description = "P1 Administrator password to connect to DaVinci with"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "worker_id" {
   type        = string
   description = "Worker App ID App - App must have sufficient Roles"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "worker_secret" {
   type        = string
   description = "Worker App Secret - App must have sufficient Roles"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "env_name" {
@@ -54,40 +54,40 @@ variable "env_name" {
 }
 
 variable "k8s_namespace" {
-  type    = string
+  type        = string
   description = "K8s namespace for container deployment"
 }
 
 variable "k8s_deploy_name" {
-  type = string
+  type        = string
   description = "Name used in the K8s deployment of the App. Used in Deployment \\ Service \\ Ingress delivery"
 }
 
 variable "k8s_deploy_domain" {
-  type = string
+  type        = string
   description = "DNS Domain used when creating the Ingresses"
 }
 
 variable "app_image_name" {
-  type = string
+  type        = string
   description = "Repo/Image:tag used for Proxy container"
 }
 
 variable "app_port" {
-  type = string
+  type        = string
   description = "Port that the Docker container runs on"
 }
 
 locals {
-  app_url="https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
-  
+  app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
+
   # Extract the DV Policies assigned to the DV Application
-  app_policy = {for i in davinci_application.initial_policy.policies : "${i.name}" => i.policy_id}
+  app_policy = { for i in davinci_application.initial_policy.policies : "${i.name}" => i.policy_id }
 
   # Translate the Region to a Domain suffix
-  north_america = "${var.region == "NorthAmerica" ? "com" : ""}"
-  europe = "${var.region == "Europe" ? "eu" : ""}"
-  canada = "${var.region == "Canada" ? "ca" : ""}"
-  asia_pacific = "${var.region == "AsiaPacific" ? "asia" : ""}"
-  pingone_domain = "${coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)}"
+  north_america  = var.region == "NorthAmerica" ? "com" : ""
+  europe         = var.region == "Europe" ? "eu" : ""
+  canada         = var.region == "Canada" ? "ca" : ""
+  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
+  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
 }
