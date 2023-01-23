@@ -60,7 +60,7 @@ resource "pingone_sign_on_policy_action" "app_logon_first" {
   }
 }
 
-resource "pingone_application" "bxr_logon" {
+resource "pingone_application" "app_logon" {
   environment_id = module.environment.environment_id
   enabled        = true
   name           = "BXR - Logon"
@@ -121,9 +121,9 @@ data "pingone_resource_scope" "pingone_read_sessions" {
   name = "p1:read:sessions"
 }
 
-resource "pingone_application_resource_grant" "bxr_login_openid" {
+resource "pingone_application_resource_grant" "app_login_openid" {
   environment_id = module.environment.environment_id
-  application_id = pingone_application.bxr_logon.id
+  application_id = pingone_application.app_logon.id
 
   resource_id = data.pingone_resource.openid.id
 
@@ -133,9 +133,9 @@ resource "pingone_application_resource_grant" "bxr_login_openid" {
   ]
 }
 
-resource "pingone_application_resource_grant" "bxr_login_pingone" {
+resource "pingone_application_resource_grant" "app_login_pingone" {
   environment_id = module.environment.environment_id
-  application_id = pingone_application.bxr_logon.id
+  application_id = pingone_application.app_logon.id
 
   resource_id = data.pingone_resource.pingone.id
 
@@ -148,7 +148,7 @@ resource "pingone_application_resource_grant" "bxr_login_pingone" {
 
 resource "pingone_application_sign_on_policy_assignment" "app_logon" {
   environment_id = module.environment.environment_id
-  application_id = pingone_application.bxr_logon.id
+  application_id = pingone_application.app_logon.id
 
   sign_on_policy_id = pingone_sign_on_policy.app_logon.id
 
