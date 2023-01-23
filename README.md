@@ -45,7 +45,7 @@ This is what the HCL will create
 
 #### Variables
 
-Create a `terraform.tfvars` file with the following:
+In the `/terraform` folder, create a `terraform.tfvars` file with the following:
 
 ```hcl
 region = "{{ NorthAmerica | Canada | Asia | Europe }}"
