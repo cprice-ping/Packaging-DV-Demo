@@ -1,6 +1,7 @@
-# SKO2023-Terraform-Advanced
+# Terraform - DaVinci Packaging
 
- Terraform for the SKO Terraform Advanced session
+This repo contains a demonstration of packaging a complete deployment of PingOne and DaVinci along with a simple application that highlights
+delivering the DaVinci Flow using the Widget.
 
 ## Packaging
 
