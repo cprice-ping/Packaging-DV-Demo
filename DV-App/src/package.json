@@ -1,0 +1,33 @@
+{
+    "name": "package-dv-demo",
+    "version": "0.0.1",
+    "type": "module",
+    "description": "Playing Terraform \\ K8s \\ App packaging.",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "fastify": "^4.11.0",
+      "handlebars": "^4.7.7",
+      "@fastify/formbody": "^7.4.0",
+      "@fastify/static": "^6.6.1",
+      "@fastify/view": "^7.4.0",
+      "btoa": "^1.2.1",
+      "node-fetch": "^3.3.0"
+    },
+    "engines": {
+      "node": "18.x"
+    },
+    "repository": {
+      "url": "https://glitch.com/edit/#!/creds-notflux"
+    },
+    "license": "MIT",
+    "keywords": [
+      "node",
+      "glitch",
+      "fastify",
+      "passkeys",
+      "credentials"
+    ]
+  }
