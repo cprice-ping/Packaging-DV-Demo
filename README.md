@@ -63,6 +63,7 @@ k8s_deploy_domain="ping-devops.com"
 k8s_namespace = "{{k8s namespace}}"
 app_image_name="docker.io/pricecs/dv-demo-app:0.0.4"
 app_port={{Port the app is listening on}}
+app_policy_name = "{{Policy name defined on the DV Application}}"
 ```
 
 #### Deployment

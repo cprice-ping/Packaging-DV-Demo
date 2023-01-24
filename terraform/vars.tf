@@ -78,6 +78,11 @@ variable "app_port" {
   description = "Port that the Docker container runs on"
 }
 
+variable "app_policy_name" {
+  type        = string
+  description = "Name of the Policy you'd like to run - must be defined on the DaVinci Application"
+}
+
 locals {
   app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
 

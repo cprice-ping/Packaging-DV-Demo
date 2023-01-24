@@ -82,7 +82,7 @@ resource "kubernetes_deployment" "demo_app" {
           env {
             # Client ID
             name  = "DVPOLICYID"
-            value = local.app_policy["Sample App Flow"]
+            value = local.app_policy[var.app_policy_name]
           }
         }
 

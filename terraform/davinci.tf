@@ -31,6 +31,23 @@ resource "davinci_flow" "initial_flow" {
   ]
 }
 
+resource "davinci_flow" "second_flow" {
+  flow_json = file("../DaVinci/demo_flow_2.json")
+  deploy    = true
+  // NOTICE: this is NOT resource.pingone_environment. Dependency is on the role assignment, not environment.
+  environment_id = module.environment.identity_data_admin_role[0].scope_environment_id
+
+  connections {
+    connection_id   = "867ed4363b2bc21c860085ad2baa817d"
+    connection_name = "Http"
+  }
+
+  // This depends_on relieves the client from multiple initial authentication attempts
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
 resource "davinci_application" "initial_policy" {
   name           = "Sample Application"
   environment_id = module.environment.environment_id
@@ -49,6 +66,15 @@ resource "davinci_application" "initial_policy" {
     status = "enabled"
     policy_flows {
       flow_id    = davinci_flow.initial_flow.flow_id
+      version_id = -1
+      weight     = 100
+    }
+  }
+  policies {
+    name   = "Second App Flow"
+    status = "enabled"
+    policy_flows {
+      flow_id    = davinci_flow.second_flow.flow_id
       version_id = -1
       weight     = 100
     }
