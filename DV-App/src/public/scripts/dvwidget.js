@@ -1,10 +1,14 @@
 startApp()
 
 function startApp() {
-    fetch("/runtimeDetails")
-    .then(res => res.json())
-    .then(data => {console.log(data); invokeWidget(data.envId, data.dvDomain, data.dvPolicyId, {}, false)})
-    .catch(err => document.getElementById("log").innerText=err)
+  // Commenting out until API call is figured out
+    // fetch("/runtimeDetails")
+    // .then(res => res.json())
+    // .then(data => {console.log(data); invokeWidget(data.envId, data.dvDomain, data.dvPolicyId, {}, false)})
+    // .catch(err => document.getElementById("log").innerText=err)
+
+  // Expected to fail for now  
+  invokeWidget(data.envId, data.dvDomain, data.dvPolicyId, {}, false)
 }
 
 function invokeWidget(envId, domain, policyId, params, modal) {
