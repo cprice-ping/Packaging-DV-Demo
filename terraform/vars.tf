@@ -84,7 +84,7 @@ variable "app_policy_name" {
 }
 
 locals {
-  app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
+  #app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
 
   # Extract the DV Policies assigned to the DV Application
   app_policy = { for i in davinci_application.initial_policy.policies : "${i.name}" => i.policy_id }

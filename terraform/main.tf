@@ -70,7 +70,7 @@ resource "pingone_application" "app_logon" {
     grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT"]
     response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
     token_endpoint_authn_method = "NONE"
-    redirect_uris               = ["${local.app_url}/"]
+    #redirect_uris               = ["${local.app_url}/"]
   }
 }
 
