@@ -1,8 +1,6 @@
 // NodeJS imports
 import { fileURLToPath } from "url";
 import path from "path";
-//import fs from "fs";
-import handlebars from 'handlebars';
 
 // External libraries
 import Fastify from "fastify";

@@ -9,10 +9,8 @@
     },
     "dependencies": {
       "fastify": "^4.11.0",
-      "handlebars": "^4.7.7",
       "@fastify/formbody": "^7.4.0",
       "@fastify/static": "^6.6.1",
-      "btoa": "^1.2.1",
       "node-fetch": "^3.3.0"
     },
     "engines": {
@@ -24,9 +22,8 @@
     "license": "MIT",
     "keywords": [
       "node",
-      "glitch",
       "fastify",
-      "passkeys",
-      "credentials"
+      "davinci",
+      "widget"
     ]
   }
