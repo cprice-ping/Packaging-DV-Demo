@@ -24,12 +24,6 @@ resource "azurerm_linux_web_app" "dv_sample" {
 
   site_config {
     always_on = true # Cannot be `true` with F1 SKU
-
-    application_stack {
-      
-      docker_image     = var.docker_image
-      docker_image_tag = var.docker_image_tag
-    }
   }
 
   app_settings = {
@@ -38,4 +32,11 @@ resource "azurerm_linux_web_app" "dv_sample" {
     DVPOLICYID = local.app_policy[var.app_policy_name]
     DVAPIKEY   = davinci_application.initial_policy.api_keys.prod
   }
+
+}
+
+resource "azurerm_app_service_source_control" "example" {
+  app_id   = azurerm_linux_web_app.dv_sample.id
+  repo_url = "https://github.com/cprice-ping/Packaging-DV-Demo.git"
+  branch   = "dv-app"
 }
