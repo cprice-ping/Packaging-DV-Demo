@@ -26,11 +26,18 @@ resource "azurerm_linux_web_app" "dv_sample" {
     always_on = true # Cannot be `true` with F1 SKU
   }
 
-  app_settings = {
+  # app_settings = {
+  #   ENVID      = module.environment.environment_id
+  #   DVDOMAIN   = local.pingone_domain
+  #   DVPOLICYID = local.app_policy[var.app_policy_name]
+  #   DVAPIKEY   = davinci_application.initial_policy.api_keys.prod
+  # }
+
+    app_settings = {
     ENVID      = module.environment.environment_id
     DVDOMAIN   = local.pingone_domain
-    DVPOLICYID = local.app_policy[var.app_policy_name]
-    DVAPIKEY   = davinci_application.initial_policy.api_keys.prod
+    DVPOLICYID = var.dv_policy_id
+    DVAPIKEY   = var.dv_api_key
   }
 
 }

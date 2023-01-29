@@ -4,7 +4,7 @@ module "environment" {
 
   target_environment_name = var.env_name
 
-  admin_user_assign_environment_admin_role = true
+  admin_user_assign_environment_admin_role = false
   admin_user_assign_identity_admin_role    = true
   admin_user_id_list = [
     var.admin_user_id

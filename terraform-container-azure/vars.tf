@@ -68,9 +68,17 @@ variable "app_policy_name" {
 #   description = "(optional) describe your variable"
 # }
 
+variable "dv_policy_id" {
+  type = string
+}
+
+variable "dv_api_key" {
+  type=string
+}
+
 locals {
   # Extract the DV Policies assigned to the DV Application
-  app_policy = { for i in davinci_application.initial_policy.policies : "${i.name}" => i.policy_id }
+  # app_policy = { for i in davinci_application.initial_policy.policies : "${i.name}" => i.policy_id }
 
   # Translate the Region to a Domain suffix
   north_america  = var.region == "NorthAmerica" ? "com" : ""
