@@ -44,6 +44,6 @@ resource "azurerm_linux_web_app" "dv_sample" {
 
 resource "azurerm_app_service_source_control" "dv-sample" {
   app_id   = azurerm_linux_web_app.dv_sample.id
-  repo_url = "https://github.com/cprice-ping/Packaging-DV-Demo.git"
-  branch   = "dv-app"
+  repo_url = "https://github.com/cprice-ping/Sample-DaVinci-App.git"
+  branch   = "main"
 }
