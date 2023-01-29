@@ -58,15 +58,15 @@ variable "app_policy_name" {
   description = "Name of the Policy you'd like to run - must be defined on the DaVinci Application"
 }
 
-variable "docker_image" {
-  type = string
-  description = "(optional) describe your variable"
-}
+# variable "docker_image" {
+#   type = string
+#   description = "(optional) describe your variable"
+# }
 
-variable "docker_image_tag" {
-  type = string
-  description = "(optional) describe your variable"
-}
+# variable "docker_image_tag" {
+#   type = string
+#   description = "(optional) describe your variable"
+# }
 
 locals {
   # Extract the DV Policies assigned to the DV Application
